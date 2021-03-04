@@ -1,0 +1,95 @@
+//This is a script to roll combat dice in Foundry VTT for a game called Hero Quest that has special custom dice.
+// Script was written for Foundry VTT version 0.79
+// 3-4-2021
+// When executed the pop up occurs that allows you select the amount of dice you need to roll and gives you the results in a chat box.
+
+let confirm = 0;
+
+let d = new Dialog({
+ title: "HeroQuest Combat Dice",
+ content: "<p>How many Combat Die do you want to roll?</p>",
+ buttons: {
+  one: {
+   label: "1",
+   callback: () => confirm = 1
+  },
+  two: {
+   label: "2",
+   callback: () => confirm = 2
+  },
+  three: {
+   label: "3",
+   callback: () => confirm = 3
+  },
+  four: {
+   label: "4",
+   callback: () => confirm = 4
+  },
+  five: {
+   label: "5",
+   callback: () => confirm = 5
+  },
+  six: {
+   label: "6",
+   callback: () => confirm = 6
+  }
+ },
+ default: "",
+ //render: html => console.log("Register interactivity in the rendered dialog"),
+ close: html => roll(confirm)
+});
+d.render(true);
+
+
+
+/////////////Functions//////////////////
+
+
+
+function roll(dice)
+{
+console.log(dice);
+//ChatMessage.create({content: dice});
+
+            let result ="";
+            let roll = 0;
+
+    ///////////////Builds the array of 1d6 numbers//////////////////////////
+
+            let array =[];
+            for(let i=0; i<dice; i++)
+               {
+               console.log(i);
+               roll = new Roll("1d6").roll() 
+               roll = roll.total;
+//               ChatMessage.create({content: roll});
+                 switch(roll){
+                   case 1: //ChatMessage.create({content: "skull"})
+                           array.push("Skull")
+                           result = result + "<br>Skull"
+                           break;
+                   case 2: //ChatMessage.create({content: "skull"})
+                           array.push("Skull")
+                           result = result + "<br>Skull"
+                           break;
+                   case 3: //ChatMessage.create({content: "shield"})
+                           array.push("Shield")
+                           result = result + "<br>Shield"
+                           break;
+                   case 4: //ChatMessage.create({content: "Shield"})
+                           result = result + "<br>Shield"
+                           array.push("Shield")
+                           break;
+                   case 5: //ChatMessage.create({content: "Skull"})
+                           result = result + "<br>Skull"
+                           array.push("Skull")
+                           break;
+                   case 6: //ChatMessage.create({content: "Black Skull"})
+                           result = result + "<br>Black Skull"
+                           array.push("Black Skull ")
+                           break;
+                    }
+               }
+//result = array;
+ChatMessage.create({content: result});
+}

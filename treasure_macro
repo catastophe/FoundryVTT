@@ -1,3 +1,6 @@
+// This is the macro scipt to activate the Treasure deck rolltable with an action bar macro.
+// Roll table is named Treasure Stack.  This macro can be aimed at any rolltable to activate
+// by changing the name "Treasure Stack" to the name of any rolltable.
 
 const table = game.tables.entities.find(t => t.name === "Treasure Stack");
 table.draw();

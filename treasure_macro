@@ -1,0 +1,3 @@
+
+const table = game.tables.entities.find(t => t.name === "Treasure Stack");
+table.draw();
